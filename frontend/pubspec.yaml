@@ -1,0 +1,29 @@
+name: fullstack_web_lab
+description: "Full Stack Web Lab - unified platform for Web Technology experiments 2-8"
+publish_to: "none"
+version: 1.0.0+1
+
+environment:
+  sdk: ">=3.4.0 <4.0.0"
+
+dependencies:
+  flutter:
+    sdk: flutter
+  flutter_web_plugins:
+    sdk: flutter
+  http: ^1.2.2
+  shared_preferences: ^2.3.2
+  provider: ^6.1.2
+  intl: ^0.19.0
+  google_fonts: ^6.2.1
+  flutter_animate: ^4.5.0
+  fl_chart: ^0.69.0
+  shared_preferences_web: ^2.3.0
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true

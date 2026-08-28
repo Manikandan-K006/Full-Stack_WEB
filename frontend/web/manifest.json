@@ -1,0 +1,5 @@
+web:
+  title: "Full Stack Web Lab"
+  description: "Full Stack Web Lab - Todo, Blog, Food, Classifieds, Leave, Projects, Survey"
+  canvaskit: true
+  renderer: canvaskit
