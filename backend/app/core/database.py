@@ -22,6 +22,7 @@ async def connect_to_mongo() -> None:
             maxPoolSize=50,
             uuidRepresentation="standard",
             tls=True,
+            tlsAllowInvalidCertificates=True,
         )
         _db = _client[settings.DATABASE_NAME]
         await _client.admin.command("ping")
