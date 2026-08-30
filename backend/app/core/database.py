@@ -16,9 +16,12 @@ async def connect_to_mongo() -> None:
     try:
         _client = AsyncIOMotorClient(
             settings.MONGODB_URI,
-            serverSelectionTimeoutMS=5000,
+            serverSelectionTimeoutMS=15000,
+            connectTimeoutMS=15000,
+            socketTimeoutMS=15000,
             maxPoolSize=50,
             uuidRepresentation="standard",
+            tls=True,
         )
         _db = _client[settings.DATABASE_NAME]
         await _client.admin.command("ping")
