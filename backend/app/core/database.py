@@ -14,15 +14,20 @@ _db: AsyncIOMotorDatabase | None = None
 async def connect_to_mongo() -> None:
     global _client, _db
     try:
+        kwargs = {
+            "serverSelectionTimeoutMS": 15000,
+            "connectTimeoutMS": 15000,
+            "socketTimeoutMS": 15000,
+            "maxPoolSize": 50,
+            "uuidRepresentation": "standard",
+        }
+        if "mongodb+srv://" in settings.MONGODB_URI or "tls=true" in settings.MONGODB_URI.lower() or "ssl=true" in settings.MONGODB_URI.lower():
+            kwargs["tls"] = True
+            kwargs["tlsAllowInvalidCertificates"] = True
+
         _client = AsyncIOMotorClient(
             settings.MONGODB_URI,
-            serverSelectionTimeoutMS=15000,
-            connectTimeoutMS=15000,
-            socketTimeoutMS=15000,
-            maxPoolSize=50,
-            uuidRepresentation="standard",
-            tls=True,
-            tlsAllowInvalidCertificates=True,
+            **kwargs
         )
         _db = _client[settings.DATABASE_NAME]
         await _client.admin.command("ping")
